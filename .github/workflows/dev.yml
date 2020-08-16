@@ -3,9 +3,9 @@ name: dev
 on: [pull_request]
 
 jobs:
-  env:
-    GITHUB_REPOSITORY: masatonaka/kafka-project-test
   test:
+    env:
+      GITHUB_REPOSITORY: masatonaka/kafka-project-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
