@@ -36,3 +36,7 @@ artifactId: kafka-project-test
 version: 1.0-SNAPSHOT
 package: practice
 ```
+
+## Github Actions for Java
+
+https://docs.github.com/en/actions/language-and-framework-guides/building-and-testing-java-with-maven
