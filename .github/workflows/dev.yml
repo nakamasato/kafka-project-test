@@ -1,11 +1,6 @@
 name: dev
 
-on:
-  push:
-    branches-ignore:
-      - master
-    paths:
-      - '!**.md'
+on: [pull_request]
 
 jobs:
   test:
@@ -28,7 +23,7 @@ jobs:
 
       # Packaging
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn clean compile assembly:single
 
       # Packaging workflow data as artifacts
       - run: mkdir staging && cp target/*.jar staging
