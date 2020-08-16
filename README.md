@@ -1,5 +1,27 @@
 # kafka-project-test
 
+## Prerequisite
+
+- jenv https://www.jenv.be/
+
+    ```
+    brew install jenv
+    ```
+
+    ```
+    jenv local 1.8
+    ```
+
+- maven
+
+    ```
+    brew install maven
+    ```
+
+    ```
+    mvn -version
+    Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+    ```
 
 ## Create Project
 
