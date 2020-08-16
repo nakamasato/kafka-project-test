@@ -64,6 +64,15 @@ Update pom with maven-assembly-plugin [How can I create an executable JAR with d
 
 ## How to run in local
 
+1. Dependent environment variables `.env`
+
+    ```.env
+    KAFKA_INPUT_TOPIC=streams-plaintext-input # input topic
+    KAFKA_OUTPUT_TOPIC=streams-pipe-output # output topic
+    KAFKA_APPLICATION_ID=streams-pipe # application id for kafka streams
+    KAFKA_BOOTSTRAP_SERVERS=localhost:9092 # bootstrap servers
+    ```
+
 1. Prepare Kafka
 
     ```
