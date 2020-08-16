@@ -1,5 +1,7 @@
 # kafka-project-test
 
+![dev](https://github.com/nakamasato/kafka-project-test/workflows/dev/badge.svg)
+
 ## Prerequisite
 
 - jenv https://www.jenv.be/
