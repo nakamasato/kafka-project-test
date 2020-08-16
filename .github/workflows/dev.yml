@@ -40,6 +40,6 @@ jobs:
         with:
           name: target
 
-      - run: |
+      - name: Build Docker image
+        run: |
           docker build -t kafka-project-test . -f .github/Dockerfile
-
