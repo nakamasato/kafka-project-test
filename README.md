@@ -2,6 +2,11 @@
 
 ![dev](https://github.com/nakamasato/kafka-project-test/workflows/dev/badge.svg)
 
+## Version
+
+- Java: 1.7
+- KafkaStreams: 2.5.0
+
 ## Prerequisite
 
 - jenv https://www.jenv.be/
