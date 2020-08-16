@@ -84,9 +84,20 @@ Update pom with maven-assembly-plugin [How can I create an executable JAR with d
     ```
 
 1. Run application
-    ```
-    java -jar target/kafka-project-test-1.0-SNAPSHOT-jar-with-dependencies.jar
-    ```
+
+    - local java
+
+        ```
+        mvn clean compile assembly:single
+        java -jar target/kafka-project-test-1.0-SNAPSHOT-jar-with-dependencies.jar
+        ```
+
+    - Docker
+
+        ```
+        docker build -t kafka-project-test .
+        docker run --network host --rm kafka-project-test
+        ```
 
 1. Check output topic `streams-pipe-output`
 

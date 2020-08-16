@@ -21,13 +21,27 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      - name: Test
+        run: mvn test
+
       # Packaging
       - name: Build with Maven
         run: mvn clean compile assembly:single
 
       # Packaging workflow data as artifacts
-      - run: mkdir staging && cp target/*.jar staging
+      - run: mkdir artifact && cp target/*.jar artifact
       - uses: actions/upload-artifact@v2
         with:
           name: Package
-          path: staging
+          path: artifact
+
+      # Download artifact
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+
+      - run: |
+          # docker build -t kafka-project-test . -f .github/Dockerfile
+          ls artifact
+
