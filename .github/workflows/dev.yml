@@ -40,6 +40,7 @@ jobs:
         with:
           name: target
 
+      # Docker Hub https://github.com/actions-hub/docker
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
         env:
