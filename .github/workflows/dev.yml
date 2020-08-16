@@ -2,8 +2,8 @@ name: dev
 
 on:
   pull_request:
-    paths:
-      - '!**.md'
+    paths-ignore:
+      - '**.md'
 
 jobs:
   test:
