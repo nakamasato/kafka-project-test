@@ -1,9 +1,7 @@
 name: dev
 
 on:
-  push:
-    branches-ignore:
-      - master
+  push_request:
     paths:
       - '!**.md'
 
