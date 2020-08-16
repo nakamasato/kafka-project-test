@@ -64,6 +64,15 @@ Update pom with maven-assembly-plugin [How can I create an executable JAR with d
 
 ## How to run in local
 
+1. Dependent environment variables `.env`
+
+    ```.env
+    KAFKA_INPUT_TOPIC=streams-plaintext-input # input topic
+    KAFKA_OUTPUT_TOPIC=streams-pipe-output # output topic
+    KAFKA_APPLICATION_ID=streams-pipe # application id for kafka streams
+    KAFKA_BOOTSTRAP_SERVERS=localhost:9092 # bootstrap servers
+    ```
+
 1. Prepare Kafka
 
     ```
@@ -85,18 +94,25 @@ Update pom with maven-assembly-plugin [How can I create an executable JAR with d
 
 1. Run application
 
-    - local java
+    - Build docker
+
+        - With compiled jar (Fast)
+
+            ```
+            mvn clean compile assembly:single
+            docker build -t kafka-project-test . -f .github/Dockerfile
+            ```
+
+        - With Docker (Same way as prod)
+
+            ```
+            docker build -t kafka-project-test .
+            ```
+
+    - Run
 
         ```
-        mvn clean compile assembly:single
-        java -jar target/kafka-project-test-1.0-SNAPSHOT-jar-with-dependencies.jar
-        ```
-
-    - Docker
-
-        ```
-        docker build -t kafka-project-test .
-        docker run --network host --rm kafka-project-test
+        docker run --env-file=.env --network host --rm kafka-project-test
         ```
 
 1. Check output topic `streams-pipe-output`
