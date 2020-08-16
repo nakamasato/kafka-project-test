@@ -4,7 +4,7 @@
 
 ## Version
 
-- Java: 1.7
+- Java: 1.8
 - KafkaStreams: 2.5.0
 
 ## Prerequisite
