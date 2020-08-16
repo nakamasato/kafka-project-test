@@ -1,5 +1,7 @@
 # kafka-project-test
 
+![dev](https://github.com/nakamasato/kafka-project-test/workflows/dev/badge.svg)
+
 ## Prerequisite
 
 - jenv https://www.jenv.be/
@@ -40,3 +42,5 @@ package: practice
 ## Github Actions for Java
 
 https://docs.github.com/en/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+- Cache (First time: 23s -> Second time: 15s)
