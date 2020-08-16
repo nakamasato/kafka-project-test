@@ -16,14 +16,19 @@ import org.apache.kafka.streams.Topology;
 public class App {
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-pipe");
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        String kafkaInputTopic = System.getenv("KAFKA_INPUT_TOPIC");
+        String kafkaOutputTopic = System.getenv("KAFKA_OUTPUT_TOPIC");
+        String kafkaApplicationId = System.getenv("KAFKA_APPLICATION_ID");
+        String kafkaBootstrapServers = System.getenv("KAFKA_BOOTSTRAP_SERVERS");
+
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, kafkaApplicationId);
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
         final StreamsBuilder builder = new StreamsBuilder();
 
-        builder.stream("streams-plaintext-input").to("streams-pipe-output");
+        builder.stream(kafkaInputTopic).to(kafkaOutputTopic);
 
         final Topology topology = builder.build();
 
