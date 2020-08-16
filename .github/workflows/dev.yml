@@ -5,7 +5,7 @@ on: [pull_request]
 jobs:
   test:
     env:
-      GITHUB_REPOSITORY: masatonaka/kafka-project-test
+      DOCKER_HUB_REPOSITORY: masatonaka/kafka-project-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -48,9 +48,9 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build :dev
-        run: docker build -f .github/Dockerfile -t ${GITHUB_REPOSITORY}:dev .
+        run: docker build -f .github/Dockerfile -t ${DOCKER_HUB_REPOSITORY}:dev .
 
       - name: Push to docker hub :dev
         uses: actions-hub/docker@master
         with:
-          args: push ${GITHUB_REPOSITORY}:dev
+          args: push ${DOCKER_HUB_REPOSITORY}:dev
