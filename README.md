@@ -39,6 +39,15 @@ version: 1.0-SNAPSHOT
 package: practice
 ```
 
+Update pom
+
+## How to run
+
+```
+ava -jar target/kafka-project-test-1.0-SNAPSHOT.jar
+Hello World!
+```
+
 ## Github Actions for Java
 
 https://docs.github.com/en/actions/language-and-framework-guides/building-and-testing-java-with-maven
