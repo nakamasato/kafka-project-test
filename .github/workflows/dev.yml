@@ -6,7 +6,7 @@ on:
       - '**.md'
 
 jobs:
-  test:
+  build:
     env:
       DOCKER_HUB_REPOSITORY: masatonaka/kafka-project-test
     runs-on: ubuntu-latest
