@@ -1,9 +1,6 @@
 name: dev
 
-on:
-  pull_request:
-    paths:
-      - '!README.md'
+on: [pull_request]
 
 jobs:
   test:
