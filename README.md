@@ -44,26 +44,55 @@ version: 1.0-SNAPSHOT
 package: practice
 ```
 
-Update pom (#2)
-
-```diff
-+          <configuration>
-+            <archive>
-+              <manifest>
-+                <addClasspath>true</addClasspath>
-+                <classpathPrefix>lib/</classpathPrefix>
-+                <mainClass>practice.App</mainClass>
-+              </manifest>
-+            </archive>
-+          </configuration>
-```
-
-## How to run
+Update pom with maven-assembly-plugin [How can I create an executable JAR with dependencies using Maven?](https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven)
 
 ```
-ava -jar target/kafka-project-test-1.0-SNAPSHOT.jar
-Hello World!
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>practice.App</mainClass>
+              </manifest>
+            </archive>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+          </configuration>
+        </plugin>
 ```
+
+## How to run in local
+
+1. Prepare Kafka
+
+    ```
+    docker run --rm -it \
+            -p 2128:2128 -p 3030:3030 -p 8081:8081 \
+            -p 8082:8082 -p 8083:8083 -p 9092:9092 \
+            -e ADV_HOST=127.0.0.1 \
+            landoop/fast-data-dev
+    ```
+
+1. Produce input topic `streams-plaintext-input`
+
+    ```
+    docker exec -it $(docker ps | grep landoop | awk '{print $1}') bash
+    root@fast-data-dev / $ kafka-console-producer --broker-list 127.0.0.1:9092 --topic streams-plaintext-input
+    > aaa
+    > aaa
+    ```
+
+1. Run application
+    ```
+    java -jar target/kafka-project-test-1.0-SNAPSHOT-jar-with-dependencies.jar
+    ```
+
+1. Check output topic `streams-pipe-output`
+
+    ```
+    kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic streams-pipe-output --from-beginning
+    ```
 
 ## Github Actions for Java
 
