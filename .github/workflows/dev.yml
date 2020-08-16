@@ -29,19 +29,17 @@ jobs:
         run: mvn clean compile assembly:single
 
       # Packaging workflow data as artifacts
-      - run: mkdir artifact && cp target/*.jar artifact
       - uses: actions/upload-artifact@v2
         with:
-          name: artifact
-          path: artifact
+          name: target
+          path: target
 
       # Download artifact
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: artifact
+          name: target
 
       - run: |
-          # docker build -t kafka-project-test . -f .github/Dockerfile
-          ls artifact
+          docker build -t kafka-project-test . -f .github/Dockerfile
 
