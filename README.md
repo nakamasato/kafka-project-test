@@ -39,7 +39,19 @@ version: 1.0-SNAPSHOT
 package: practice
 ```
 
-Update pom
+Update pom (#2)
+
+```diff
++          <configuration>
++            <archive>
++              <manifest>
++                <addClasspath>true</addClasspath>
++                <classpathPrefix>lib/</classpathPrefix>
++                <mainClass>practice.App</mainClass>
++              </manifest>
++            </archive>
++          </configuration>
+```
 
 ## How to run
 
