@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     env:
-      DOCKER_HUB_REPOSITORY: masatonaka/kafka-project-test
+      DOCKER_HUB_REPOSITORY: nakamasato/kafka-project-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
